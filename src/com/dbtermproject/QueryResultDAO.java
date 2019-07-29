@@ -30,7 +30,7 @@ public class QueryResultDAO {
 					"FROM advertisement, entity\n" + 
 					"WHERE ad_id = entity_id\n" + 
 					"GROUP BY advertiser\n" + 
-					"ORDER BY advertiser ASC;");
+					"ORDER BY impressions DESC;");
 			while(resultSet.next()) {
 				String advertiser = resultSet.getString("advertiser");
 				int impressions   = resultSet.getInt("impressions");

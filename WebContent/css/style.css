@@ -23,6 +23,11 @@ html, body {
 }
 
 .results-content {
-	height: 400px;
+	height: 500px;
 	overflow: scroll;
+}
+
+.fixed-th {
+	position: sticky;
+	top: -1px;
 }
