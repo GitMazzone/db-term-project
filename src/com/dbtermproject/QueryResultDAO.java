@@ -1,3 +1,9 @@
+/************************************************************************************
+ * @file QueryResultDAO.java
+ *
+ * @author  Michael Mazzone
+ */
+
 package com.dbtermproject;
 
 import java.sql.Connection;
@@ -7,6 +13,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/************************************************************************************
+ * This class provides access to the database using JDBC.
+ * ArrayLists are used in JSP files to display relevant data.
+ */
 public class QueryResultDAO {
 	
 	static final String url = "jdbc:mysql://localhost/facebookaddata?"
@@ -18,7 +28,10 @@ public class QueryResultDAO {
 	private String pass = "pass";
 	private Connection connection;
 	
-	// Query 1: List entity and total impressions
+	/********************************************************************************
+     * Query 1: List entity and total impressions
+     * @return  the set of tuples matching the query
+     */
 	public ArrayList<QueryResult> listAllEntitiesAndImpressions() {
 		connect();
 		ArrayList<QueryResult> tuples = new ArrayList<>();
@@ -50,7 +63,10 @@ public class QueryResultDAO {
 		return tuples;
 	}
 	
-	// Query 2: List entity and the ads they pay for
+	/********************************************************************************
+     * Query 2: List entity and the ads they pay for
+     * @return  the set of tuples matching the query
+     */
 	public ArrayList<QueryResult> listAllEntitiesAndTheirAds() {
 		connect();
 		ArrayList<QueryResult> tuples = new ArrayList<>();
@@ -82,7 +98,10 @@ public class QueryResultDAO {
 		return tuples;
 	}
 	
-	// Query 3: List ads by entity and the number of impressions per ad
+	/********************************************************************************
+     * Query 3: List ads by entity and the number of impressions per ad
+     * @return  the set of tuples matching the query
+     */
 	public ArrayList<QueryResult> listAllAdsAndImpressions() {
 		connect();
 		ArrayList<QueryResult> tuples = new ArrayList<>();
@@ -117,7 +136,10 @@ public class QueryResultDAO {
 		return tuples;
 	}
 
-	// Query 4: List companies and their target audience
+	/********************************************************************************
+     * Query 4: List companies and their target audience
+     * @return  the set of tuples matching the query
+     */
 	public ArrayList<QueryResult> listTargetAudiences() {
 		connect();
 		ArrayList<QueryResult> tuples = new ArrayList<>();
@@ -148,7 +170,10 @@ public class QueryResultDAO {
 		return tuples;
 	}
 
-	// Query 5: Show proportion of all ads an entity is responsible for
+	/********************************************************************************
+     * Query 5: Show proportion of all ads an entity is responsible for
+     * @return  the set of tuples matching the query
+     */
 	public ArrayList<QueryResult> listEntityAdProportions() {
 		connect();
 		ArrayList<QueryResult> tuples = new ArrayList<>();
@@ -180,7 +205,10 @@ public class QueryResultDAO {
 		return tuples;
 	}
 	
-	// Query 6: Rank entities by average proportion of political/not_political
+	/********************************************************************************
+     * Query 6: Rank entities by average proportion of political/not_political
+     * @return  the set of tuples matching the query
+     */
 	public ArrayList<QueryResult> listEntitiesRankedByPoliticalness() {
 		connect();
 		ArrayList<QueryResult> tuples = new ArrayList<>();
@@ -213,8 +241,11 @@ public class QueryResultDAO {
 		return tuples;
 	}
 	
-	// Query 7: List all ads within a date range
 	// TODO: make this take an input
+	/********************************************************************************
+     * Query 7: List all ads within a date range
+     * @return  the set of tuples matching the query
+     */
 	public ArrayList<QueryResult> listAdsWithinDateRange() {
 		connect();
 		ArrayList<QueryResult> tuples = new ArrayList<>();
@@ -222,16 +253,18 @@ public class QueryResultDAO {
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("" +
-					"SELECT title, created\n" + 
+					"SELECT title, created, impressions\n" + 
 					"FROM meta_info,advertisement\n" + 
 					"WHERE meta_id = ad_id\n" + 
 					"AND LOCATE('2018-10-06',created);");
 			while(resultSet.next()) {
 				String title = resultSet.getString("title");
-				String created   = resultSet.getString("created");
+				String created = resultSet.getString("created");
+				int impressions = resultSet.getInt("impressions");
 				QueryResult tuple = new QueryResult();
 				tuple.setAdTitle(title);
 				tuple.setCreatedDate(created);
+				tuple.setAdImpressions(impressions);
 				tuples.add(tuple);
 			}
 			resultSet.close();
@@ -245,29 +278,35 @@ public class QueryResultDAO {
 		return tuples;
 	}
 
-	// Query 8: List well-known entities and compare their total impressions to average of all entities
+	/********************************************************************************
+     * Query 8: List well-known entities and compare their total impressions to 
+     *          average of all entities
+     * @return  the set of tuples matching the query
+     */
 	public ArrayList<QueryResult> listWellKnownImpressions() {
 		connect();
 		ArrayList<QueryResult> tuples = new ArrayList<>();
 
 		try {
 			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("" +
-					"CREATE TABLE temp1 AS \n" + 
-					"SELECT AVG(impressions) AS averageImpressions\n" + 
-					"FROM advertisement;\n" + 
-					"CREATE TABLE temp2 AS\n" + 
-					"SELECT DISTINCT advertiser, AVG(impressions) AS impressions\n" + 
+			statement.execute("" +
+					"CREATE TABLE IF NOT EXISTS temp1 AS (\n" + 
+					"SELECT AVG(impressions) AS totalAverageImpressions\n" + 
+					"FROM advertisement);\n" + 
+					"\n" + 
+					"CREATE TABLE IF NOT EXISTS temp2 AS (\n" + 
+					"SELECT DISTINCT advertiser, AVG(impressions) AS avgImpressions\n" + 
 					"FROM entity, advertisement, temp1\n" + 
 					"WHERE entity_id = ad_id\n" + 
 					"GROUP BY advertiser\n" + 
-					"ORDER BY AVG(impressions) DESC;\n" + 
+					"ORDER BY AVG(impressions) DESC);");
+			ResultSet resultSet = statement.executeQuery("" +
 					"SELECT *\n" + 
 					"FROM temp2, temp1;");
 			while(resultSet.next()) {
 				String advertiser = resultSet.getString("advertiser");
-				double avgImpressions   = resultSet.getDouble("impressions");
-				double avgTotalImpressions = resultSet.getDouble("averageImpressions");
+				double avgImpressions   = resultSet.getDouble("avgImpressions");
+				double avgTotalImpressions = resultSet.getDouble("totalAverageImpressions");
 				QueryResult tuple = new QueryResult();
 				tuple.setAdvertiserName(advertiser);
 				tuple.setAvgImpressions(avgImpressions);
@@ -286,6 +325,9 @@ public class QueryResultDAO {
 		return tuples;
 	}
 	
+	/********************************************************************************
+     * Connect to the database using JDBC.
+     */
 	public void connect() {
 		try {
 			System.out.println("Connecting...");
@@ -299,6 +341,9 @@ public class QueryResultDAO {
 		}
 	}
 	
+	/********************************************************************************
+     * Disconnect from the database.
+     */
 	public void disconnect() {
 		try {
 			if(connection != null && !connection.isClosed()) {

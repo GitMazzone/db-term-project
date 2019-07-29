@@ -1,5 +1,14 @@
+/************************************************************************************
+ * @file QueryResult.java
+ *
+ * @author  Michael Mazzone
+ */
+
 package com.dbtermproject;
 
+/************************************************************************************
+ * This class provides an object to store data queried from the database.
+ */
 public class QueryResult {
 	
 	// Advertisement attributes
@@ -28,10 +37,12 @@ public class QueryResult {
 	private double avgImpressions;
 	private double avgTotalImpressions;
 	
-	// Constructors ***********************************************************
-	// ************************************************************************
+	// Constructors *********************************************************************
+	// **********************************************************************************
 	
-	// Empty constructor -- everything set to empty string or 0
+	/************************************************************************************
+	 * Empty constructor -- everything set to empty string or 0
+	 */
 	public QueryResult() {
 		this.adTitle = "";
 		this.adMessage = "";
@@ -49,7 +60,9 @@ public class QueryResult {
 		this.politicalProb = 0.0;
 	}
 
-	// Full set of attributes
+	/************************************************************************************
+	 * Full set of attributes
+	 */
 	public QueryResult(String adTitle, String adMessage, int adImpressions,
 			String advertiserName, String entities, String paidForBy,
 			String adThumbnail, String createdDate, String updatedDate,
@@ -71,27 +84,9 @@ public class QueryResult {
 		this.politicalProb  = politicalProb;
 	}
 
-	// Minimal attributes
-	public QueryResult(String adTitle, int adImpressions, String paidForBy) {
-		this.adTitle       = adTitle;
-		this.adImpressions = adImpressions;
-		this.paidForBy     = paidForBy;
-	}
+	// End constructors *****************************************************************
+	// **********************************************************************************
 
-	// End constructors *******************************************************
-	// ************************************************************************
-	
-	// toString overrides *****************************************************
-	// ************************************************************************
-	
-	@Override
-	public String toString() {
-		return "Entity name: " + paidForBy + ", Ad title: " + adTitle + ", Impressions: " + adImpressions;
-	}
-	
-	// End toString overrides *************************************************
-	// ************************************************************************
-	
 	public String getAdTitle() {
 		return adTitle;
 	}

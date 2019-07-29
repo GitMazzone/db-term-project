@@ -3,27 +3,28 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<link rel="icon" 
-      type="image/png" 
-      href="https://lh3.googleusercontent.com/8C5GNVMjuD0_jHbIsVH0UqJu_G_mpk_KXtclPkg2ZwnyC9fTfWbWGemUtG_siSXOv2s">
 <head>
-<meta charset="UTF-8">
-<title>FB Ad Queries</title>
-<style type="text/css">
-<%@ include file = "bootstrap/css/bootstrap.min.css" %>
-</style>
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.request.contextPath }/css/style.css">
+	<link rel="shortcut icon" href="#">
+	<meta charset="UTF-8">
+	<title>FB Ad Queries</title>
+	<style type="text/css">
+	<%@ include file = "../bootstrap/css/bootstrap.min.css" %>
+	</style>
+	<link rel="stylesheet" type="text/css"
+		href="${ pageContext.request.contextPath }/css/style.css">
 </head>
 <body>
 
 	<div class="row full-height align-items-center">
 
 		<!-- LEFT NAVBAR -->
-		<div class="col-sm-2 mr-5 bg-light full-height">
+		<div class="col-sm-2 mr-5 bg-light full-height justify-content-center align-items-center">
+			<button type="button" class="btn btn-outline-primary mt-5"
+				data-toggle="modal" data-target="#login-modal"
+				style="margin-left: 28%;">Salty Login</button>
 			<ul
 				class="nav flex-column justify-content-center align-items-center full-height">
-				<h4 class="text-dark">Pick a query!</h4>
+				<h4 class="text-dark" style="margin-top: -80%;">Pick a query!</h4>
 				<li class="nav-item"><a class="nav-link active" href="Query1"
 					data-toggle="tooltip" data-placement="right"
 					title="List entity and their total impressions"> Impressions by
@@ -59,10 +60,31 @@
 			</ul>
 		</div>
 
+		<!-- LOGIN MODAL -->
+		<div class="modal fade" id="login-modal" tabindex="-1"
+			role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+			<div class="modal-dialog modal-sm modal-dialog-centered">
+				<div class="modal-content text-center">
+					<h2 class="mt-4">Login</h2>
+					<form class="mt-5 ml-5 mr-5">
+						<div class="input-group mb-5">
+							<input type="text" class="form-control"
+								placeholder="password"
+								aria-label="password">
+							<div class="input-group-append">
+								<button class="btn btn-outline-primary" type="button"
+									id="button-submit">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
 		<!-- MAIN CONTENT -->
 		<div class="col-sm-8 ml-5 results-content">
 			<table class="table table-striped table-hover">
-				<thead class="thead-dark">
+				<thead class="thead-light">
 					<tr>
 						<th class="fixed-th">Advertiser</th>
 						<th class="fixed-th">Total Impressions</th>
@@ -70,8 +92,8 @@
 				</thead>
 				<c:forEach items="${ result_tuples }" var="item">
 					<tr>
-						<td>${ item.getAdvertiserName() }</td>
-						<td>${ item.getAdImpressions() }</td>
+						<td class="text-light">${ item.getAdvertiserName() }</td>
+						<td class="text-light">${ item.getAdImpressions() }</td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -79,8 +101,9 @@
 
 	</div>
 	
-	<script src="bootstrap/js/bootstrap.js"></script>
-	<script src="jquery/jquery-3.4.1.slim.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="${ pageContext.request.contextPath }/jquery/jquery-3.4.1.slim.min.js"></script>
+	<script src="${ pageContext.request.contextPath }/js/popper.min.js"></script>
+	<script src="${ pageContext.request.contextPath }/bootstrap/js/bootstrap.js"></script>
+	<script src="${ pageContext.request.contextPath }/js/main.js"></script>
 </body>
 </html>
