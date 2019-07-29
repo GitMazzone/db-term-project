@@ -1,0 +1,28 @@
+html, body {
+    height: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.tooltip-inner {
+    max-width: 500px;
+    padding: 3px 8px;
+    color: ##f8f9fa!important;
+    text-align: center;
+    background-color: #30363c!important;
+    border-radius: .25rem;
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=right] .arrow::before, .tooltip.bs-tooltip-right .arrow::before {
+    margin-top: -3px;
+    content: "";
+    border-width: 5px 5px 5px 0 !important;
+    border-right-color: #30363c !important;
+}
+
+.results-content {
+	height: 400px;
+	overflow: scroll;
+}
