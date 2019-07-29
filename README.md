@@ -3,8 +3,8 @@
 
 ## Authors Information
 
-* __Full Names:__ Michael Mazzone, Will Moore, Dasnee Bailey, Kiran Patel
-* __UGA Emails:__ mike.mazzone@uga.edu, jwm18575@uga.edu, dlb86627@uga.edu, ksp86066@uga.edu
+* __Full Names:__ Michael Mazzone, Will Moore, Kiran Patel
+* __UGA Emails:__ mike.mazzone@uga.edu, jwm18575@uga.edu, ksp86066@uga.edu
 * __Course:__ CSCI 4730
 
 ## Implementation Overview

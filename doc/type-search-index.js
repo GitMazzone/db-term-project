@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"com.dbtermproject","l":"ControllerServlet"},{"p":"com.dbtermproject","l":"QueryResult"},{"p":"com.dbtermproject","l":"QueryResultDAO"}]

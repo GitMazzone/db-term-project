@@ -8,6 +8,7 @@ package com.dbtermproject;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -288,8 +289,7 @@ public class QueryResultDAO {
 		ArrayList<QueryResult> tuples = new ArrayList<>();
 
 		try {
-			Statement statement = connection.createStatement();
-			statement.execute("" +
+			PreparedStatement statement=connection.prepareStatement("" +
 					"CREATE TABLE IF NOT EXISTS temp1 AS (\n" + 
 					"SELECT AVG(impressions) AS totalAverageImpressions\n" + 
 					"FROM advertisement);\n" + 
