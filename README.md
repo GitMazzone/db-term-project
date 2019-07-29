@@ -7,15 +7,29 @@
 * __UGA Emails:__ mike.mazzone@uga.edu, jwm18575@uga.edu, ksp86066@uga.edu
 * __Course:__ CSCI 4730
 
-## Implementation Overview
+## Application Overview
 
-Assumptions made:
-* TODO
+Queries successfully created:
+* Query 1: List entity and total impressions
+
+* Query 2: List entity and the ads they pay for
+
+* Query 3: List ads by entity and the number of impressions per ad
+
+* Query 4: List companies and their target audience
+
+* Query 5: Show proportion of all ads an entity is responsible for
+
+* Query 6: Rank entities by average proportion of political/not_political
+
+* Query 7: List all ads within a date range
+
+* Query 8: List well-known entities and compare their total impressions to average of all entities
 
 ## Contribution Guidelines 
 **PLEASE FOLLOW CAREFULLY**:
-1. Clone repo with: `git clone https://github.com/GitMazzone/db-term-project.git`
-2. Work in a development branch (NOT in master) with: `git checkout -b "dev/your-branch-name-here"`
+ * Clone repo with: `git clone https://github.com/GitMazzone/db-term-project.git`
+ * Work in a development branch (NOT in master) with: `git checkout -b "dev/your-branch-name-here"`
 
 When you want to push your changes to  master, please ensure your code runs without errors or significant warnings. Follow these steps:
 
@@ -34,4 +48,4 @@ Be sure to comment any methods and classes you create, and add your name to the 
 * Maven: [documentation](https://maven.apache.org/)
 * JDBC: [documentation](https://www.oracle.com/technetwork/java/overview-141217.html)
 * JSP: [documentation](https://docs.oracle.com/javaee/5/tutorial/doc/bnajo.html)
-* Tomcat: documentation](https://tomcat.apache.org/download-90.cgi)
+* Tomcat: [documentation](https://tomcat.apache.org/download-90.cgi)

@@ -61,34 +61,70 @@
 		</div>
 
 		<!-- LOGIN MODAL -->
-		<div class="modal fade" id="login-modal" tabindex="-1"
-			role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+		<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
+			aria-labelledby="loginModal" aria-hidden="true">
 			<div class="modal-dialog modal-sm modal-dialog-centered">
 				<div class="modal-content text-center">
-					<h2 class="mt-4">Login</h2>
-					<form class="mt-5 ml-5 mr-5">
-						<div class="input-group mb-5">
-							<input type="text" class="form-control"
-								placeholder="password"
-								aria-label="password">
-							<div class="input-group-append">
-								<button class="btn btn-outline-primary" type="button"
-									id="button-submit">Submit</button>
-							</div>
+					<form class="px-4 py-3">
+						<div class="form-group">
+							<label for="loginEmail">Email address</label> <input type="email"
+								class="form-control" id="loginEmail"
+								placeholder="email@example.com">
 						</div>
+						<div class="form-group">
+							<label for="loginPassword">Password</label> <input
+								type="password" class="form-control" id="loginPassword"
+								placeholder="Password">
+						</div>
+						<button type="submit" class="btn btn-primary">Sign in</button>
 					</form>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item mb-2" href="#">New around here? Sign up</a>
 				</div>
 			</div>
 		</div>
 
+		<!-- DATE INPUT DROPDOWNS -->
+		<div>
+			<div class="dropdown mb-4">
+				<button class="btn btn-outline-light dropdown-toggle" type="button"
+					id="monthDropdown" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false">Pick month</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="#">January</a> <a
+						class="dropdown-item" href="#">February</a> <a
+						class="dropdown-item" href="#">March</a> <a class="dropdown-item"
+						href="#">April</a> <a class="dropdown-item" href="#">May</a> <a
+						class="dropdown-item" href="#">June</a> <a class="dropdown-item"
+						href="#">July</a> <a class="dropdown-item" href="#">August</a> <a
+						class="dropdown-item" href="#">September</a> <a
+						class="dropdown-item" href="#">October</a> <a
+						class="dropdown-item" href="#">November</a> <a
+						class="dropdown-item" href="#">December</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="btn btn-outline-light dropdown-toggle" type="button"
+					id="yearDropdown" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false">Pick year</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="#">2018</a> 
+					<a class="dropdown-item" href="#">2019</a>
+				</div>
+			</div>
+		</div>
+		
 		<!-- MAIN CONTENT -->
 		<div class="col-sm-8 ml-5 results-content">
+			<h3 class="text-center text-light">
+				This query displays, for a given date range, all ads and their impressions.
+			</h3>
 			<table class="table table-striped table-hover">
 				<thead class="thead-light">
 					<tr>
 						<th class="fixed-th">Ad Title</th>
 						<!-- TODO: make date a variable -->
-						<th class="fixed-th">Impressions on: 2018-10-06</th>
+						<th class="fixed-th">Impressions on: ${ item.getYear() }-${ item.getMonth() }</th>
 					</tr>
 				</thead>
 				<c:forEach items="${ result_tuples }" var="item">
