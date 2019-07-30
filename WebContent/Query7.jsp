@@ -57,6 +57,10 @@
 					data-toggle="tooltip" data-placement="right"
 					title="List well-known entities and compare their total impressions to average of all entities">
 						Well-Known </a></li>
+				<li class="nav-item"><a class="nav-link active" href="Query9"
+					data-toggle="tooltip" data-placement="right"
+					title="List entities with market caps and compare their total impressions to the average of all entities">
+						Publicly Traded </a></li>
 			</ul>
 		</div>
 
@@ -85,7 +89,7 @@
 		</div>
 
 		<!-- DATE INPUT DROPDOWNS -->
-		<div>
+		<!-- <div>
 			<div class="dropdown mb-4">
 				<button class="btn btn-outline-light dropdown-toggle" type="button"
 					id="monthDropdown" data-toggle="dropdown" aria-haspopup="true"
@@ -112,7 +116,19 @@
 					<a class="dropdown-item" href="#">2019</a>
 				</div>
 			</div>
-		</div>
+		</div> -->
+		
+		<form class="text-light">
+		  <div class="form-group">
+		    <label for="formMonthInput">Month:</label>
+		    <input type="text" class="form-control" id="formMonthInput" placeholder="ex: 1">
+		  </div>
+		  <div class="form-group">
+		    <label for="formYearInput">Year:</label>
+		    <input type="text" class="form-control" id="formYearInput" placeholder="ex: 2018">
+		  </div>
+		  <button type="submit" class="btn btn-outline-light mt-1">Search</button>
+		</form>
 		
 		<!-- MAIN CONTENT -->
 		<div class="col-sm-8 ml-5 results-content">
@@ -124,7 +140,7 @@
 					<tr>
 						<th class="fixed-th">Ad Title</th>
 						<!-- TODO: make date a variable -->
-						<th class="fixed-th">Impressions on: ${ item.getYear() }-${ item.getMonth() }</th>
+						<th class="fixed-th">Impressions on: 2018-10-06</th>
 					</tr>
 				</thead>
 				<c:forEach items="${ result_tuples }" var="item">

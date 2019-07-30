@@ -72,6 +72,9 @@ public class ControllerServlet extends HttpServlet {
 		case "/Query8":
 			tuples = qrDAO.listWellKnownImpressions();
 			break;
+		case "/Query9":
+			tuples = qrDAO.listPubliclyTraded();
+			break;
 		}
 		
 		if(queried) request.setAttribute("result_tuples", tuples);

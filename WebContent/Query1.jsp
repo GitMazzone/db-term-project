@@ -57,6 +57,10 @@
 					data-toggle="tooltip" data-placement="right"
 					title="List well-known entities and compare their total impressions to average of all entities">
 						Well-Known </a></li>
+				<li class="nav-item"><a class="nav-link active" href="Query9"
+					data-toggle="tooltip" data-placement="right"
+					title="List entities with market caps and compare their total impressions to the average of all entities">
+						Publicly Traded </a></li>
 			</ul>
 		</div>
 

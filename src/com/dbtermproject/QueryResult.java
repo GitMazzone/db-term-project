@@ -36,6 +36,7 @@ public class QueryResult {
 	private double proportionOfImpressions;
 	private double avgImpressions;
 	private double avgTotalImpressions;
+	private double marketCap;
 	
 	// Constructors *********************************************************************
 	// **********************************************************************************
@@ -194,6 +195,14 @@ public class QueryResult {
 
 	public void setAvgTotalImpressions(double avgTotalImpressions) {
 		this.avgTotalImpressions = avgTotalImpressions;
+	}
+
+	public double getMarketCap() {
+		return marketCap;
+	}
+
+	public void setMarketCap(double marketCap) {
+		this.marketCap = marketCap;
 	}
 	
 }

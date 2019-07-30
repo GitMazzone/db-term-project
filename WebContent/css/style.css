@@ -32,3 +32,14 @@ html, body {
 	position: sticky;
 	top: -1px;
 }
+
+.modal form {
+	align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+	margin-left: -25px;
+    margin-right: -35px;
+}

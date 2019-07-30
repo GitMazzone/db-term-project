@@ -252,6 +252,7 @@ public class QueryResultDAO {
 		ArrayList<QueryResult> tuples = new ArrayList<>();
 
 		try {
+//			PreparedStatement statement = connection.prepareStatement("");
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("" +
 					"SELECT title, created, impressions\n" + 
@@ -289,7 +290,7 @@ public class QueryResultDAO {
 		ArrayList<QueryResult> tuples = new ArrayList<>();
 
 		try {
-			PreparedStatement statement=connection.prepareStatement("" +
+			PreparedStatement statement = connection.prepareStatement("" +
 					"CREATE TABLE IF NOT EXISTS temp1 AS (\n" + 
 					"SELECT AVG(impressions) AS totalAverageImpressions\n" + 
 					"FROM advertisement);\n" + 
@@ -309,6 +310,55 @@ public class QueryResultDAO {
 				double avgTotalImpressions = resultSet.getDouble("totalAverageImpressions");
 				QueryResult tuple = new QueryResult();
 				tuple.setAdvertiserName(advertiser);
+				tuple.setAvgImpressions(avgImpressions);
+				tuple.setAvgTotalImpressions(avgTotalImpressions);
+				
+				tuples.add(tuple);
+			}
+			resultSet.close();
+			statement.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+
+		disconnect();
+
+		return tuples;
+	}
+	
+	/********************************************************************************
+     * Query 9: List entities with a publicly available market cap and compare their
+     *          their average impressions per ad to average of all entities
+     * @return  the set of tuples matching the query
+     */
+	public ArrayList<QueryResult> listPubliclyTraded() {
+		connect();
+		ArrayList<QueryResult> tuples = new ArrayList<>();
+
+		try {
+			PreparedStatement statement = connection.prepareStatement("" +
+					"CREATE TABLE IF NOT EXISTS temp1table AS \n" + 
+					"SELECT AVG(impressions) AS totalAverageImpressions\n" + 
+					"FROM advertisement;\n" + 
+					"\n" + 
+					"CREATE TABLE IF NOT EXISTS temp22table AS\n" + 
+					"SELECT advertiser, market_cap, AVG(impressions) AS avgImpressions\n" + 
+					"FROM entity, advertisement, temp1table, publicly_traded_entity\n" + 
+					"WHERE entity_id = ad_id\n" + 
+					"	AND publicly_traded_name = advertiser\n" + 
+					"GROUP BY advertiser, market_cap\n" + 
+					"ORDER BY market_cap DESC;");
+			ResultSet resultSet = statement.executeQuery("" +
+					"SELECT *\n" + 
+					"FROM temp22table, temp1table;");
+			while(resultSet.next()) {
+				String advertiser = resultSet.getString("advertiser");
+				double marketCap = resultSet.getDouble("market_cap");
+				double avgImpressions   = resultSet.getDouble("avgImpressions");
+				double avgTotalImpressions = resultSet.getDouble("totalAverageImpressions");
+				QueryResult tuple = new QueryResult();
+				tuple.setAdvertiserName(advertiser);
+				tuple.setMarketCap(marketCap);
 				tuple.setAvgImpressions(avgImpressions);
 				tuple.setAvgTotalImpressions(avgTotalImpressions);
 				
