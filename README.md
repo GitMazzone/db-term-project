@@ -1,4 +1,3 @@
-
 # Submission Information
 
 ## Authors Information
@@ -7,7 +6,16 @@
 * __UGA Emails:__ mike.mazzone@uga.edu, jwm18575@uga.edu, ksp86066@uga.edu
 * __Course:__ CSCI 4730
 
-## Application Overview
+## Application Overview  
+  
+Addressing the rubric:  
+* What is New/Interesting: This is covered in the attached PowerPoint presentation.
+* Technical Depth & Sophistication: This project was built using industry-standard project structure and technologies. We feel it is sufficiently sophisticated for the time allotted and shows good usage of JSP, JDBC, MySQL, Maven, Tomcat, and front-end libraries.  
+* Running Demo and Completeness: The demo is fully functional and achieved everything we initially proposed.  
+* UI Aspects/Front-end Quality: The demo shows that the UI is modern and well-designed, making the results of the queries the primary focus.  
+* Data Set Quality: This is real-world data of a non-trivial size (160,000 tuples initially) that was carefully trimmed to only include what we need.  
+* Normalization Process: 3NF is covered in the attached PowerPoint presentation.  
+* UML Design: UML and reverse-engineering from MySQL Workbench is covered in the attached PowerPoint presentation.  
 
 Queries successfully created:
 * Query 1: List entity and total impressions
@@ -26,6 +34,8 @@ Queries successfully created:
 
 * Query 8: List well-known entities and compare their total impressions to average of all entities
 
+* Query 9: List well-known entities and their market caps and compare their average impressions to the average impressions of all entities
+
 ## Contribution Guidelines 
 **PLEASE FOLLOW CAREFULLY**:
  * Clone repo with: `git clone https://github.com/GitMazzone/db-term-project.git`
@@ -41,7 +51,9 @@ When you want to push your changes to  master, please ensure your code runs with
 6. Make sure master is the base and your branch is the compared branch, then click create pull request.  
 7. When your pull request is approved, your code will merge with master!
 
-Be sure to comment any methods and classes you create, and add your name to the `@author` tag.
+Be sure to comment any methods and classes you create, and add your name to the `@author` tag.  
+  
+NOTE: You will need to install Tomcat v9.0 and Maven (linked below) to be able to run this project.
 
 ## Resources Used
 * ProPublica's data set can be found here: [Political Advertisements from Facebook](https://www.propublica.org/datastore/dataset/political-advertisements-from-facebook)

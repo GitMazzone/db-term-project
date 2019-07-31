@@ -242,7 +242,6 @@ public class QueryResultDAO {
 		return tuples;
 	}
 	
-	// TODO: make this take an input
 	/********************************************************************************
      * Query 7: List all ads within a date range
      * @return  the set of tuples matching the query
@@ -252,13 +251,52 @@ public class QueryResultDAO {
 		ArrayList<QueryResult> tuples = new ArrayList<>();
 
 		try {
-//			PreparedStatement statement = connection.prepareStatement("");
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("" +
 					"SELECT title, created, impressions\n" + 
 					"FROM meta_info,advertisement\n" + 
 					"WHERE meta_id = ad_id\n" + 
 					"AND LOCATE('2018-10-06',created);");
+			while(resultSet.next()) {
+				String title = resultSet.getString("title");
+				String created = resultSet.getString("created");
+				int impressions = resultSet.getInt("impressions");
+				QueryResult tuple = new QueryResult();
+				tuple.setAdTitle(title);
+				tuple.setCreatedDate(created);
+				tuple.setAdImpressions(impressions);
+				tuples.add(tuple);
+			}
+			resultSet.close();
+			statement.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+
+		disconnect();
+
+		return tuples;
+	}
+	
+	/********************************************************************************
+     * Query 7: List all ads within a date range
+     * @param month - the month, in numeric value (1-12) to query
+     * @param year - the year to query (2018-2019)
+     * @return  the set of tuples matching the query
+     */
+	public ArrayList<QueryResult> listAdsWithinDateRange(String month, String year) {
+		connect();
+		ArrayList<QueryResult> tuples = new ArrayList<>();
+
+		try {
+			PreparedStatement statement = connection.prepareStatement("" +
+					"SELECT title, created, impressions\n" +
+					"FROM meta_info, advertisement\n" +
+					"WHERE meta_id = ad_id\n" +
+					"AND LOCATE('?-?', created);");
+			statement.setString(1, month);
+			statement.setString(2, year);
+			ResultSet resultSet = statement.executeQuery();
 			while(resultSet.next()) {
 				String title = resultSet.getString("title");
 				String created = resultSet.getString("created");

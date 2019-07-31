@@ -63,6 +63,25 @@ public class QueryResult {
 
 	/************************************************************************************
 	 * Full set of attributes
+	 * @param adTitle - the ad's title
+	 * @param adMessage - the ad's message
+	 * @param adImpressions - the number of impressions an ad received
+	 * @param advertiserName - the Facebook account that posted the ad
+	 * @param entities - named entities mentioned in the ad
+	 * @param paidForBy - the entity listed in Facebook’s required disclosure as having 
+	 *                    paid for the ad
+	 * @param adThumbnail - the ad's thumbnail image
+	 * @param createdDate - date ad was first collected by the Political Ad Collector
+	 * @param updatedDate - most recent time the ad got an impression OR the most recent 
+	 *                      time it was voted on
+	 * @param adPage - the page that posted the ad
+	 * @param adTargets - a parsed version of Facebook’s “Why am I seeing this?” 
+	 *                    disclosure provided to Political Ad Collector users
+	 * @param political - number of Political Ad Collector users who have voted that the 
+	 *                    ad is political
+	 * @param notPolitical - number of Political Ad Collector users who have voted that
+	 *                       the ad is not political
+	 * @param politicalProb - calculated by the classifier
 	 */
 	public QueryResult(String adTitle, String adMessage, int adImpressions,
 			String advertiserName, String entities, String paidForBy,

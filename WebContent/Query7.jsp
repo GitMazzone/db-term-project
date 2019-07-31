@@ -88,44 +88,15 @@
 			</div>
 		</div>
 
-		<!-- DATE INPUT DROPDOWNS -->
-		<!-- <div>
-			<div class="dropdown mb-4">
-				<button class="btn btn-outline-light dropdown-toggle" type="button"
-					id="monthDropdown" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false">Pick month</button>
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="#">January</a> <a
-						class="dropdown-item" href="#">February</a> <a
-						class="dropdown-item" href="#">March</a> <a class="dropdown-item"
-						href="#">April</a> <a class="dropdown-item" href="#">May</a> <a
-						class="dropdown-item" href="#">June</a> <a class="dropdown-item"
-						href="#">July</a> <a class="dropdown-item" href="#">August</a> <a
-						class="dropdown-item" href="#">September</a> <a
-						class="dropdown-item" href="#">October</a> <a
-						class="dropdown-item" href="#">November</a> <a
-						class="dropdown-item" href="#">December</a>
-				</div>
-			</div>
-			<div class="dropdown">
-				<button class="btn btn-outline-light dropdown-toggle" type="button"
-					id="yearDropdown" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false">Pick year</button>
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="#">2018</a> 
-					<a class="dropdown-item" href="#">2019</a>
-				</div>
-			</div>
-		</div> -->
-		
-		<form class="text-light">
+		<!-- DATE INPUT -->
+		<form class="text-light" action="${ pageContext.request.contextPath }/AdQuery/Query7" method="get">
 		  <div class="form-group">
 		    <label for="formMonthInput">Month:</label>
-		    <input type="text" class="form-control" id="formMonthInput" placeholder="ex: 1">
+		    <input type="text" class="form-control" id="formMonthInput" name="queryMonth" placeholder="ex: 10">
 		  </div>
 		  <div class="form-group">
 		    <label for="formYearInput">Year:</label>
-		    <input type="text" class="form-control" id="formYearInput" placeholder="ex: 2018">
+		    <input type="text" class="form-control" id="formYearInput" name="queryYear" placeholder="ex: 2018">
 		  </div>
 		  <button type="submit" class="btn btn-outline-light mt-1">Search</button>
 		</form>

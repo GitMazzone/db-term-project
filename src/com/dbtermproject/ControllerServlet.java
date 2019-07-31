@@ -75,6 +75,17 @@ public class ControllerServlet extends HttpServlet {
 		case "/Query9":
 			tuples = qrDAO.listPubliclyTraded();
 			break;
+			// TODO: make Query7 take parameters as input in future
+//		default:
+//			if(action.matches("Query7.+")) {
+//				String month = request.getParameter("queryMonth");
+//				String year = request.getParameter("queryYear");
+//				System.out.println("Month: " + month);
+//				System.out.println("Year: " + year);
+//				tuples = qrDAO.listAdsWithinDateRange(month, year);
+//			} else {
+//				tuples = qrDAO.listAdsWithinDateRange();
+//			}
 		}
 		
 		if(queried) request.setAttribute("result_tuples", tuples);
