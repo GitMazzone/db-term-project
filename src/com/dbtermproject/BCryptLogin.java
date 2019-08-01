@@ -10,6 +10,10 @@ import org.mindrot.jbcrypt.*;
 
 public class BCryptLogin {
 
+	/*************
+	* Main to be able to login and register for the database using BCrypt salted encryption using the jBCrypt package
+	*@author WIll Moore
+	*/
 	public static void main(String[] args) throws SQLException {
 		boolean inLoop = true;
 		while(inLoop) {
@@ -30,7 +34,7 @@ public class BCryptLogin {
 						+ "useLegacyDatetimeCode=false&"
 						+ "serverTimezone=EST";
 				String user = "root";
-				String pass = "Gobraves1";
+				String pass = "pass";
 				Connection connection = DriverManager.getConnection(url, user, pass);
 				Statement statement = connection.createStatement();
 				int result = statement.executeUpdate("INSERT INTO users (username,password) VALUES ('" + username + "','" + hashedPassword + "');");
@@ -50,7 +54,7 @@ public class BCryptLogin {
 						+ "useLegacyDatetimeCode=false&"
 						+ "serverTimezone=EST";
 				String user = "root";
-				String pass = "Gobraves1";
+				String pass = "pass";
 				Connection connection = DriverManager.getConnection(url, user, pass);
 				Statement statement = connection.createStatement();
 				
