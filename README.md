@@ -17,6 +17,8 @@ Addressing the rubric:
 * Normalization Process: 3NF is covered in the attached PowerPoint presentation.  
 * UML Design: UML and reverse-engineering from MySQL Workbench is covered in the attached PowerPoint presentation.  
 
+NOTE: The UML, ER, and 3NF were altered or fixed based on the recommendations from Dr. Miller in class.
+
 Queries successfully created:
 * Query 1: List entity and total impressions
 
@@ -35,6 +37,13 @@ Queries successfully created:
 * Query 8: List well-known entities and compare their total impressions to average of all entities
 
 * Query 9: List well-known entities and their market caps and compare their average impressions to the average impressions of all entities
+
+**SQL NOTE**: Queries can be found in a separate SQL file named `TPQueries.sql` in the main `TermProject` directory.  
+  
+**BCRYPT NOTE**:  
+`bcrypt` was used to create a command-line interface basic user login. It can be used by following these steps:  
+1. Run the BCryptLogin.java file 
+2. Follow the command-line prompts for registering a new account or logging in with an existing account
 
 ## Contribution Guidelines 
 **PLEASE FOLLOW CAREFULLY**:
